@@ -1,1 +1,0 @@
-{"1310cea8cd7a9df3df5c2e8c61fd9237": {"success": {"bakingStats": null, "containerImage": "fast-bakery.dev-brendan.outerbounds.xyz/default/roomier-sponge:ywu41qxuse-oci-zstd", "metadata": {"coordinatorImageTag": "master-4fc923df-1753376188"}, "pythonPath": "/opt/outerbounds/fastbakery/bin/python"}}}

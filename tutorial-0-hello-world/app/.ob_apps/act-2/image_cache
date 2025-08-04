@@ -1,1 +1,0 @@
-{"fbc82d08760851257b5e547aa42ca60d": {"success": {"bakingStats": null, "containerImage": "fast-bakery.dev-yellow.outerbounds.xyz/luckiest-ostrich:16jgxtr46r-oci-zstd", "metadata": {"coordinatorImageTag": "v1.13.1"}, "pythonPath": "/opt/outerbounds/fastbakery/bin/python"}}}

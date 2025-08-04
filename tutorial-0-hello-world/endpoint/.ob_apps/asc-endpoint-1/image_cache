@@ -1,1 +1,0 @@
-{"5ea735e4556e257e40ab508ed7310514": {"success": {"bakingStats": null, "containerImage": "fast-bakery.dev-brendan.outerbounds.xyz/default/well-wisher-camel:yui2wk3vyr-oci-zstd", "metadata": {"coordinatorImageTag": "master-69fe05e6-1753973311"}, "pythonPath": "/opt/outerbounds/fastbakery/bin/python"}}}

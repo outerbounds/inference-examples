@@ -1,1 +1,0 @@
-{"0a813fc2598f248940ff372afe562e1c": {"success": {"bakingStats": null, "containerImage": "fast-bakery.dev-yellow.outerbounds.xyz/foolproof-cello:4mi2vq2ptx-oci-zstd", "metadata": {"coordinatorImageTag": "v1.14.1-cca94b69-1748618223"}, "pythonPath": "/opt/outerbounds/fastbakery/bin/python"}}}
