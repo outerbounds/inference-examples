@@ -1,0 +1,1 @@
+{"ae64b7833a377e7eb6d8c3645194f36d": {"success": {"bakingStats": null, "containerImage": "fast-bakery.dev-yellow.outerbounds.xyz/low-price-platypus:34so5s0nf0-oci-zstd", "metadata": {"coordinatorImageTag": "v1.13.1"}, "pythonPath": "/opt/outerbounds/fastbakery/bin/python"}}}

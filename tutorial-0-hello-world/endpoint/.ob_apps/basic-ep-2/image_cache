@@ -1,0 +1,1 @@
+{"36d93d38f20bf8eb3fe088f217ed99be": {"success": {"bakingStats": null, "containerImage": "fast-bakery.dev-brendan.outerbounds.xyz/default/loving-coyote:zz42s8z0yt-oci-zstd", "metadata": {"coordinatorImageTag": "master-4fc923df-1753376188"}, "pythonPath": "/opt/outerbounds/fastbakery/bin/python"}}}

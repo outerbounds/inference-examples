@@ -1,0 +1,1 @@
+{"726b3efa00d6518fe31d9ed771d68467": {"success": {"bakingStats": null, "containerImage": "fast-bakery.dev-yellow.outerbounds.xyz/low-price-dalmatian:p4p53732x1-oci-zstd", "metadata": {"coordinatorImageTag": "v1.13.1"}, "pythonPath": "/opt/outerbounds/fastbakery/bin/python"}}}

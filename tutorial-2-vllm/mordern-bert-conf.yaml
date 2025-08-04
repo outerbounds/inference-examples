@@ -1,0 +1,33 @@
+name: mbert-app
+port: 8000
+
+tags:
+  - model_name: Alibaba-NLP/gte-reranker-modernbert-base
+  - task: score
+  - dtype: half
+  - model_type: reranker
+  - platform: vllm
+  - Type: testing
+
+environment:
+  MODEL_NAME: Alibaba-NLP/gte-reranker-modernbert-base
+
+commands:
+  - "vllm serve $MODEL_NAME --dtype=half --task score"
+
+secrets:
+  - huggingface-phototagger
+
+image: registry.hub.docker.com/vllm/vllm-openai:latest
+
+auth:
+  type: API
+
+resources:
+  cpu: "12"
+  memory: "40G"
+  ephemeralStorage: "50G"
+  gpu: "1"
+
+compute_pools:
+  - gpu-pool-inference

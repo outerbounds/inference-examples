@@ -1,0 +1,16 @@
+name: open-webui
+port: 8080
+
+environment:
+  WEBUI_AUTH: False
+  ENABLE_WEBSOCKET_SUPPORT: false
+
+secrets:
+  - open-ai-integration
+
+commands:
+  - open-webui serve
+
+dependencies:
+  pypi:
+    open-webui: ""

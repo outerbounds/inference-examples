@@ -1,0 +1,25 @@
+name: vllm-app
+port: 8000
+
+environment:
+  MODEL_NAME: meta-llama/Llama-3.2-1B-Instruct
+
+commands:
+  - "vllm serve $MODEL_NAME --dtype=half"
+
+secrets:
+  - utkarsh-hugging-face
+
+image: registry.hub.docker.com/vllm/vllm-openai:latest
+
+auth:
+  type: API
+
+resources:
+  cpu: "12"
+  memory: "40G"
+  ephemeralStorage: "50G"
+  gpu: "1"
+
+compute_pools:
+  - gpu-pool-inference

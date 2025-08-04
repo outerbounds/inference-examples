@@ -1,0 +1,1 @@
+{"ec46b042e5699a7ac538f77251b2dc89": {"success": {"bakingStats": null, "containerImage": "fast-bakery.dev-silverwing.outerbounds.xyz/default/dummy-proof-gibbon:9vtkum6uzm-oci-zstd", "metadata": {"coordinatorImageTag": "master-999cff25-1750094963"}, "pythonPath": "/opt/outerbounds/fastbakery/bin/python"}}}
