@@ -1,0 +1,4 @@
+uv.lock
+pyproject.toml
+.python-version
+.ob_apps/*
