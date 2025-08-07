@@ -1,0 +1,36 @@
+name: custom-vllm-app
+port: 8000
+
+# TODO: Change these params to for your usecase. 
+environment:
+  DOWNLOAD_DIR: /tmp/models
+  MODEL_PATH: metaflow/mf.models/models/artifacts/SFT_train_5f675ce0a9e241ef9901effaa1781dfb
+  S3_ROOT: s3://obp-vs1gse-metaflow
+  CLOUD: aws
+  MODEL_NAME: llm
+
+# Download the model to a local directory. 
+# Then serve the local model using vllm. 
+commands:
+  - "python model_downloader.py --cloud $CLOUD --s3_root $S3_ROOT --model_s3_path $MODEL_PATH --download_dir $DOWNLOAD_DIR --model_name $MODEL_NAME"
+  - "vllm serve $DOWNLOAD_DIR/$MODEL_NAME --dtype=half --task score"
+image: registry.hub.docker.com/vllm/vllm-openai:latest
+
+auth:
+  type: API
+
+# TODO: Change these params to for your usecase. 
+resources:
+  cpu: "42"
+  memory: "164Gi"
+  ephemeralStorage: "400Gi"
+  gpu: "4"
+  sharedMemory: "128Gi"
+
+# TODO: Change these params to for your usecase. 
+compute_pools:
+  - a10g4x
+
+# TODO: Uncomment or change these params to for your usecase. 
+# secrets: 
+#   - cw-storage
