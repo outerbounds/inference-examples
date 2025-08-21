@@ -1,0 +1,23 @@
+name: fastapi-app
+port: 8000
+
+commands:
+  - "gunicorn --workers 1 --worker-class uvicorn.workers.UvicornWorker --timeout 0 --bind 0.0.0.0:8000 main:app"
+
+dependencies:
+  pypi:
+    fastapi: ""
+    gunicorn: ""
+    uvicorn: ""
+    python-dotenv: ""
+
+auth:
+  type: API
+
+resources:
+  cpu: "1"
+  memory: "1Gi"
+  ephemeralStorage: "2Gi"
+
+# compute_pools:
+#   - demo-api-server
