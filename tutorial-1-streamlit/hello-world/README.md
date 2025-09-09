@@ -20,7 +20,7 @@ The app will be available at http://localhost:8501
 
 To deploy the app using Outerbounds:
 ```sh
-outerbounds app deploy --name streamlit-app --port 8501 -- streamlit run main.py
+outerbounds app deploy --config-file config.yml
 ```
 
 Note: Streamlit uses port 8501 by default. Make sure to use this port when deploying. 

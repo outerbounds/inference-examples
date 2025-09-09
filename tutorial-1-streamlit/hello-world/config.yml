@@ -1,0 +1,9 @@
+name: streamlit-hello
+port: 8501
+
+commands:
+  - streamlit run main.py
+
+dependencies:
+  pypi:
+    streamlit: ""
