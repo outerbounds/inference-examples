@@ -23,9 +23,9 @@ auth:
 resources:
   cpu: "42"
   memory: "164Gi"
-  ephemeralStorage: "400Gi"
+  disk: "400Gi"
   gpu: "4"
-  sharedMemory: "128Gi"
+  shared_memory: "128Gi"
 
 # TODO: Change these params to for your usecase. 
 compute_pools:
