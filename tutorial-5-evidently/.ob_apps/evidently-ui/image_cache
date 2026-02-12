@@ -1,1 +1,0 @@
-{"d116d5450b1079b5c58b2dc5ffc67541": {"success": {"bakingStats": null, "containerImage": "fast-bakery.mozart.obp.outerbounds.com/default/navigable-parrot:oej4y5sx33-oci-zstd", "metadata": {"coordinatorImageTag": "v1.22.0-452f9720-1766080379"}, "pythonPath": "/opt/outerbounds/fastbakery/bin/python"}}}

@@ -45,6 +45,7 @@ make test-local
 
 # Test deployed instance
 make test-remote URL=https://evidently-ui-xyz.outerbounds.xyz
+make populate URL=https://evidently-ui-xyz.outerbounds.xyz
 ```
 
 ## How It Works

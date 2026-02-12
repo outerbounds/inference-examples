@@ -1,47 +1,57 @@
 SHELL := /bin/bash
-CONDA_ACTIVATE := source ~/.zshrc 2>/dev/null && conda activate ob-lambdas
-METAFLOW_PROFILE := mozart
 
-.PHONY: help install config-local config-prod run-local test-local deploy status logs delete test-remote clean run-python
+# Defaults — override with: make deploy CONDA_ENV= METAFLOW_PROFILE=
+CONDA_ENV ?= base
+METAFLOW_PROFILE ?= mozart
+
+# Build ENV_PREFIX from optional components
+_CONDA := $(if $(CONDA_ENV),source ~/.zshrc 2>/dev/null && conda activate $(CONDA_ENV) &&,)
+_MF    := $(if $(METAFLOW_PROFILE),METAFLOW_PROFILE=$(METAFLOW_PROFILE),)
+ENV_PREFIX := $(_CONDA) $(_MF)
+
+.PHONY: help install config-local config-prod run-local test-local deploy status logs delete test-remote clean run-python populate
 
 help: ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  %-20s %s\n", $$1, $$2}'
 
-install: ## Install evidently and dependencies in ob-lambdas conda env
-	$(CONDA_ACTIVATE) && pip install "evidently[sql]" pyyaml s3fs psycopg2-binary
+install: ## Install evidently and dependencies
+	$(ENV_PREFIX) pip install "evidently[sql]" pyyaml s3fs psycopg2-binary scikit-learn
 
 config-local: ## Generate local SQLite config (for dev/testing)
-	$(CONDA_ACTIVATE) && METAFLOW_PROFILE=$(METAFLOW_PROFILE) python generate_config.py --local
+	$(ENV_PREFIX) python generate_config.py --local
 
 config-prod: ## Generate production config (PostgreSQL + S3, requires Metaflow creds)
-	$(CONDA_ACTIVATE) && METAFLOW_PROFILE=$(METAFLOW_PROFILE) python generate_config.py
+	$(ENV_PREFIX) python generate_config.py
 
 run-local: config-local ## Start Evidently UI locally with SQLite
-	$(CONDA_ACTIVATE) && METAFLOW_PROFILE=$(METAFLOW_PROFILE) python run_evidently.py --host 0.0.0.0 --port 8000 --conf-path evidently_config.yaml
+	$(ENV_PREFIX) python run_evidently.py --host 0.0.0.0 --port 8000 --conf-path evidently_config.yaml
 
 test-local: ## Run test against local instance (http://localhost:8000)
-	$(CONDA_ACTIVATE) && METAFLOW_PROFILE=$(METAFLOW_PROFILE) python test_app.py --url http://localhost:8000
+	$(ENV_PREFIX) python test_app.py --url http://localhost:8000
 
 deploy: ## Deploy Evidently app to Outerbounds
-	$(CONDA_ACTIVATE) && METAFLOW_PROFILE=$(METAFLOW_PROFILE) outerbounds app deploy --config-file evidently-ui.yaml
+	$(ENV_PREFIX) outerbounds app deploy --config-file evidently-ui.yaml
 
 status: ## Check deployment status
-	$(CONDA_ACTIVATE) && METAFLOW_PROFILE=$(METAFLOW_PROFILE) outerbounds app list | grep -i evidently || echo "No evidently apps found"
+	$(ENV_PREFIX) outerbounds app list | grep -i evidently || echo "No evidently apps found"
 
 logs: ## Show app logs (pass WORKER_ID=... for specific worker)
-	$(CONDA_ACTIVATE) && METAFLOW_PROFILE=$(METAFLOW_PROFILE) outerbounds app logs --name evidently-ui $(if $(WORKER_ID),--worker-id $(WORKER_ID),)
+	$(ENV_PREFIX) outerbounds app logs --name evidently-ui $(if $(WORKER_ID),--worker-id $(WORKER_ID),)
 
 delete: ## Delete the deployed Evidently app
-	$(CONDA_ACTIVATE) && METAFLOW_PROFILE=$(METAFLOW_PROFILE) outerbounds app delete --name evidently-ui
+	$(ENV_PREFIX) outerbounds app delete --name evidently-ui
 
 test-remote: ## Run test against deployed instance (pass URL=https://...)
-	$(CONDA_ACTIVATE) && METAFLOW_PROFILE=$(METAFLOW_PROFILE) python test_app.py --url $(URL) --use-auth
+	$(ENV_PREFIX) python test_app.py --url $(URL) --use-auth
 
 test-remote-project: ## Run full test with project creation (pass URL=https://...)
-	$(CONDA_ACTIVATE) && METAFLOW_PROFILE=$(METAFLOW_PROFILE) python test_app.py --url $(URL) --use-auth --test-project
+	$(ENV_PREFIX) python test_app.py --url $(URL) --use-auth --test-project
+
+populate: ## Populate dashboard with sample ML data (pass URL=https://...)
+	$(ENV_PREFIX) python populate_data.py --url $(URL)
 
 run-python: ## Run a python snippet (pass CMD="...")
-	$(CONDA_ACTIVATE) && METAFLOW_PROFILE=$(METAFLOW_PROFILE) python -c "$(CMD)"
+	$(ENV_PREFIX) python -c "$(CMD)"
 
 clean: ## Remove generated config and local workspace
 	rm -f evidently_config.yaml
