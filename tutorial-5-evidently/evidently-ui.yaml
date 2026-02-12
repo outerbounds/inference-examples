@@ -1,0 +1,45 @@
+name: evidently-ui-2
+port: 8000
+description: Evidently AI ML monitoring and observability dashboard
+
+auth:
+  type: BrowserAndApi
+
+persistence: postgres
+
+environment:
+  EVIDENTLY_DEBUG: "true"
+
+dependencies:
+  python: "3.12"
+  pypi:
+    evidently: ""
+    sqlalchemy: ""
+    alembic: ""
+    psycopg2-binary: ""
+    s3fs: ""
+    pyyaml: ""
+    outerbounds: ""
+    flask: ""
+
+commands:
+  - "bash start_evidently.sh"
+
+package:
+  src_path: ./
+  suffixes:
+    - .py
+    - .sh
+    - .yaml
+
+resources:
+  cpu: "1"
+  memory: "4Gi"
+  disk: "20Gi"
+
+replicas:
+  fixed: 1
+
+tags:
+  - service: evidently
+  - component: ui
