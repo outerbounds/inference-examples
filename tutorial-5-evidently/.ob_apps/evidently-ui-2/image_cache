@@ -1,0 +1,1 @@
+{"beda087fa53dda66270bc14471734884": {"success": {"bakingStats": null, "containerImage": "fast-bakery.mozart.obp.outerbounds.com/default/sleek-yak:5wv9sq3wui-oci-zstd", "metadata": {"coordinatorImageTag": "v1.22.0-452f9720-1766080379"}, "pythonPath": "/opt/outerbounds/fastbakery/bin/python"}}}

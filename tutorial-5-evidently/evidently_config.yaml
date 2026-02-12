@@ -1,0 +1,4 @@
+database:
+  url: sqlite:///workspace/evidently.db
+storage:
+  type: sql
