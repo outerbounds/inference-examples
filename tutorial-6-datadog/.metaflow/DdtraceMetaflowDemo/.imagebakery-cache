@@ -1,0 +1,1 @@
+{"134237dfd22bee9ce124426fa77135dc": {"success": {"bakingStats": null, "containerImage": "fast-bakery.dev-content.outerbounds.xyz/default/lawful-chihuahua:8174mg6nxi-oci-zstd", "metadata": {"coordinatorImageTag": "master-f3237c7f-1771364368"}, "pythonPath": "/opt/outerbounds/fastbakery/bin/python"}}}

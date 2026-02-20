@@ -1,0 +1,25 @@
+name: datadog-agent
+port: 8126
+
+auth:
+  type: API
+
+no_deps: true 
+image: docker.io/datadog/agent:latest
+
+secrets:
+- datadog-uk # Make sure to change this to your Resource Integration name in the Outerbounds UI
+
+compute_pools:
+- inference-m52xl # Make sure to change this to your compute pool
+
+skip_code_package: true
+
+environment:
+  DD_SITE: "us5.datadoghq.com" # Change this to your endpoint
+  DD_ENV: "dev" # Change this to your environment 
+  DD_APM_ENABLED: "true"
+  DD_APM_NON_LOCAL_TRAFFIC: "true"
+  DD_HOSTNAME: "dd-agent-outerbounds" # Change this according to your usecase 
+  DD_PROCESS_AGENT_ENABLED: "false"
+  DD_LOGS_ENABLED: "false"
