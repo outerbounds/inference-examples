@@ -1,0 +1,39 @@
+name: mlflow-tracking
+port: 5000
+description: MLflow Tracking Server with PostgreSQL backend
+
+auth:
+  type: Browser
+
+persistence: postgres
+
+environment:
+  MLFLOW_SERVER_DISABLE_SECURITY_MIDDLEWARE: "true"
+
+dependencies:
+  python: "3.11"
+  pypi:
+    mlflow: ""
+    psycopg2-binary: ""
+    boto3: ""
+
+commands:
+  - "bash start_mlflow.sh"
+
+package:
+  src_path: ./
+  suffixes:
+    - .py
+    - .sh
+
+resources:
+  cpu: "1"
+  memory: "4Gi"
+  disk: "20Gi"
+
+replicas:
+  fixed: 1
+
+tags:
+  - service: mlflow
+  - component: tracking-server
