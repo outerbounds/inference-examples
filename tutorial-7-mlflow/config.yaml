@@ -3,7 +3,7 @@ port: 5000
 description: MLflow Tracking Server with PostgreSQL backend
 
 auth:
-  type: Browser
+  type: BrowserAndApi
 
 persistence: postgres
 

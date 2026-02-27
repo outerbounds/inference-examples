@@ -18,14 +18,13 @@ MLFLOW_DEPLOYMENT_NAME = "mlflow-tracking"
 
 def get_mlflow_url():
     """Resolve the internal URL of the deployed MLflow server."""
-    return "http://c-74o6ov.serv-default.svc.cluster.local:80"
-    # deployments = AppDeployer().list_deployments(name=MLFLOW_DEPLOYMENT_NAME)
-    # if not deployments:
-    #     raise ValueError(
-    #         f"No deployment found with name '{MLFLOW_DEPLOYMENT_NAME}'. "
-    #         "Deploy it first: outerbounds app deploy --config-file config.yaml"
-    #     )
-    # return deployments[0].internal_url
+    deployments = AppDeployer().list_deployments(name=MLFLOW_DEPLOYMENT_NAME)
+    if not deployments:
+        raise ValueError(
+            f"No deployment found with name '{MLFLOW_DEPLOYMENT_NAME}'. "
+            "Deploy it first: outerbounds app deploy --config-file config.yaml"
+        )
+    return deployments[0].internal_url
 
 
 @pypi_base(
